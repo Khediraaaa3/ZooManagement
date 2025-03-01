@@ -4,7 +4,6 @@ public class Dolphin extends Aquatic {
     private float swimmingSpeed;
 
     public Dolphin() {
-        super();
     }
 
     public Dolphin(String family, String name, int age, boolean isMammal, String habitat, float swimmingSpeed) {
@@ -22,11 +21,23 @@ public class Dolphin extends Aquatic {
 
     @Override
     public void swim() {
-        System.out.println("This dolphin is swimming.");
+        System.out.println("This dolphin is swimming at " + swimmingSpeed + " km/h.");
+    }
+
+    @Override
+    protected Object getName() {
+        return null;
+    }
+
+    @Override
+    protected Object getAge() {
+        return null;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Dolphin{swimmingSpeed=" + swimmingSpeed + "}";
+        return super.toString() + ", Dolphin{" +
+                "swimmingSpeed=" + swimmingSpeed +
+                '}';
     }
 }
