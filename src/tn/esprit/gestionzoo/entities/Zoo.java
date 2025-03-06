@@ -176,21 +176,18 @@ public class Zoo {
         public ZooFullException(String message) {
             super(message);
         }
-    public static Zoo comparerZoo(Zoo z1, Zoo z2) {
-        if (z1 == null) return z2;
-        if (z2 == null) return z1;
-        if (z1.nbrAnimals >= z2.nbrAnimals) return z1;
-        else return z2;
-    }
 
-    public static class InvalidAgeException extends Exception {
-            public static InvalidAgeException() {
+        public static Zoo comparerZoo(Zoo z1, Zoo z2) {
+            if (z1 == null) return z2;
+            if (z2 == null) return z1;
+            if (z1.nbrAnimals >= z2.nbrAnimals) return z1;
+            else return z2;
+        }
+
+        public static class InvalidAgeException extends Exception {
+            public InvalidAgeException() {
                 super("L'âge de l'animal ne peut pas être négatif.");
             }
         }
-
-        public void InvalidAgeException(String message) {
-                super(message);
-            }
-        }
+    }
 }
