@@ -5,7 +5,7 @@ import tn.esprit.gestionzoo.entities.*;
 import tn.esprit.gestionzoo.entities.*;
 
 public class ZooManagement {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Zoo.ZooFullException.InvalidAgeException {
         // Création d'un zoo avec seulement 3 cages
         Zoo myZoo = new Zoo("Wildlife Park", "Ariana", 3);
 

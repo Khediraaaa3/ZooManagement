@@ -9,7 +9,7 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(String family, String name, int age, boolean isMammal) throws InvalidAgeException {
+    public Animal(String family, String name, int age, boolean isMammal) throws Zoo.ZooFullException.InvalidAgeException {
         this.family = family;
         this.name = name;
         setAge(age);
@@ -36,11 +36,11 @@ public class Animal {
         return age;
     }
 
-    public void setAge(int age) throws InvalidAgeException {
+    public void setAge(int age) throws Zoo.ZooFullException.InvalidAgeException {
         if (age >= 0)
             this.age = age;
         else
-            throw new InvalidAgeException();
+            throw new Zoo.ZooFullException.InvalidAgeException();
     }
 
     public boolean isMammal() {
