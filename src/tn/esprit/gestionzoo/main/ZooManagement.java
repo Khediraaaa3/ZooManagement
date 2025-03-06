@@ -2,35 +2,48 @@ package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
 
+import tn.esprit.gestionzoo.entities.*;
+
 public class ZooManagement {
     public static void main(String[] args) {
+        // Création d'un zoo avec seulement 3 cages
+        Zoo myZoo = new Zoo("Wildlife Park", "Ariana", 3);
 
-        Zoo myZoo = new Zoo("Wildlife Park", "Ariana", 25);
+        // Création d'animaux
+        Animal lion = new Animal("Félin", "Lion", 5, true);
+        Animal tiger = new Animal("Félin", "Tigre", 7, true);
+        Animal elephant = new Animal("Éléphantidés", "Éléphant", 10, true);
+        Animal giraffe = new Animal("Giraffidés", "Girafe", 8, true);
 
-        Dolphin dolphin1 = new Dolphin("Cétacé", "Naruto", 7, true, "Océan", 25.5f);
-        Dolphin dolphin2 = new Dolphin("Cétacé", "Sasuke", 10, true, "Mer", 30.0f);
-        Penguin penguin1 = new Penguin("Oiseau", "Taki", 4, false, "Antarctique", 100.0f);
-        Penguin penguin2 = new Penguin("Oiseau", "Mitsuha", 3, false, "Arctique", 150.0f);
+        // Test d'ajout d'animaux avec gestion de l'exception ZooFullException
+        System.out.println("\n=== Test d'ajout d'animaux avec exceptions ===");
 
-        System.out.println("\n=== Ajout d'animaux aquatiques ===");
-        myZoo.addAquaticAnimal(dolphin1);
-        myZoo.addAquaticAnimal(dolphin2);
-        myZoo.addAquaticAnimal(penguin1);
-        myZoo.addAquaticAnimal(penguin2);
+        try {
+            myZoo.addAnimal(lion);
+            System.out.println("Nombre d'animaux après ajout: " + myZoo.getNbrAnimals());
 
-        System.out.println("\n=== Test de la méthode swim() pour tous les animaux aquatiques ===");
-        myZoo.displaySwimming();
+            myZoo.addAnimal(tiger);
+            System.out.println("Nombre d'animaux après ajout: " + myZoo.getNbrAnimals());
 
-        System.out.println("\n=== Profondeur maximale de nage des pingouins ===");
-        System.out.println("Profondeur maximale: " + myZoo.maxPenguinSwimmingDepth() + " mètres");
+            myZoo.addAnimal(elephant);
+            System.out.println("Nombre d'animaux après ajout: " + myZoo.getNbrAnimals());
 
-        System.out.println("\n=== Nombre d'animaux aquatiques par type ===");
-        myZoo.displayNumberOfAquaticsByType();
+            // Cette ligne devrait lancer une exception car le zoo est plein (3 cages)
+            myZoo.addAnimal(giraffe);
+            System.out.println("Nombre d'animaux après ajout: " + myZoo.getNbrAnimals());
+        } catch (Zoo.ZooFullException e) {
+            System.out.println("Exception: " + e.getMessage());
+            System.out.println("Nombre d'animaux actuel: " + myZoo.getNbrAnimals());
+        }
 
-        System.out.println("\n=== Test de la méthode equals ===");
-        Dolphin dolphin3 = new Dolphin("Cétacé", "Jack", 7, true, "Océan", 40.0f);
-        Dolphin dolphin4 = new Dolphin("Cétacé", "Babayaga", 7, true, "Rivière", 20.0f);
-        System.out.println("dolphin1 equals dolphin3 (même nom, âge et habitat): " + dolphin1.equals(dolphin3));
-        System.out.println("dolphin1 equals dolphin4 (même nom et âge, habitat différent): " + dolphin1.equals(dolphin4));
+        // Test d'ajout d'un animal avec âge négatif
+        System.out.println("\n=== Test d'ajout d'un animal avec âge négatif ===");
+        try {
+            Animal invalidAnimal = new Animal("Canidé", "Loup", -3, true);
+            myZoo.addAnimal(invalidAnimal);
+        } catch (Zoo.ZooFullException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
     }
 }
